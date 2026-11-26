@@ -1,0 +1,118 @@
+@import 'tailwindcss';
+
+:root {
+  --ceramic-bg: #f6f1e7;
+  --ceramic-card: #fbf8f1;
+  --chassis-bg: #e7decb;
+  --chassis-deep: #d8ccb4;
+  --ink-primary: #1d2128;
+  --ink-muted: #5d5950;
+  --brass: #b89040;
+  --brass-dark: #8c6924;
+  --signal-live: #d9441e;
+  --signal-glow: rgba(217, 68, 30, 0.34);
+  --emerald-ok: #0d7a5f;
+  --emerald-glow: rgba(13, 122, 95, 0.34);
+  --trace-idle: #b8afa0;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ceramic-bg);
+  color: var(--ink-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.chassis-frame {
+  background: linear-gradient(160deg, #ece3d2 0%, #dfd3bc 100%);
+  border: 1.5px solid #c9ba9e;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 12px 30px -14px rgba(34, 27, 16, 0.25);
+}
+
+.ceramic-tile {
+  background: linear-gradient(155deg, #fdfbf6 0%, #f1e9da 100%);
+  border: 1.5px solid #d5c9b3;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 4px rgba(38, 30, 18, 0.1);
+  transition:
+    transform 120ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.ceramic-tile:not(:disabled):hover {
+  border-color: #b89040;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 4px 10px rgba(38, 30, 18, 0.14);
+}
+
+.ceramic-tile:not(:disabled):active {
+  transform: scale(0.95);
+}
+
+.ceramic-tile-live {
+  border-color: rgba(217, 68, 30, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px rgba(217, 68, 30, 0.18),
+    0 3px 10px -2px var(--signal-glow);
+}
+
+.ceramic-tile-solved {
+  border-color: rgba(13, 122, 95, 0.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 0 0 1px rgba(13, 122, 95, 0.22),
+    0 3px 12px -2px var(--emerald-glow);
+}
+
+.ceramic-tile-hint {
+  border-color: #d9441e;
+  animation: hintPulse 0.9s ease-in-out infinite;
+}
+
+.ceramic-tile-block {
+  background: linear-gradient(155deg, #dcd2bf 0%, #cbc0aa 100%);
+  border: 1.5px solid #bcae94;
+  box-shadow: inset 0 2px 4px rgba(45, 36, 22, 0.12);
+}
+
+@keyframes hintPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 68, 30, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(217, 68, 30, 0);
+  }
+}
+
+@keyframes ledPulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.led-pulse {
+  animation: ledPulse 1.8s ease-in-out infinite;
+}
